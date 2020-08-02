@@ -7,3 +7,7 @@ macro(ctstring_add_test test_name exe_name)
     GTest::gtest_main)
   add_test(${test_name} ${exe_name})
 endmacro()
+
+ctstring_add_test(static_string static_string_test static_string_test.cpp)
+ctstring_add_test(lifted_string lifted_string_test lifted_string_test.cpp)
+target_link_libraries(lifted_string_test PRIVATE type_utility::type_utility)
