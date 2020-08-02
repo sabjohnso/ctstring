@@ -25,6 +25,7 @@ namespace CTString::Testing
   namespace // anonymous
   {
     using std::is_same_v;
+    using std::decay_t;
     using TypeUtility::type;
     using TypeUtility::nat;
     using CTString::static_string;
@@ -61,13 +62,10 @@ namespace CTString::Testing
       static_assert(s3 == drop(s1, nat<3>));
       static_assert(s1 == take(s1, nat<3>) + drop(s1, nat<3>));
 
-
-
-
-
+      static_assert(
+        is_same_v<
+        decay_t<decltype(s1)>,
+        decay_t<decltype(take(s1, nat<3>) + drop(s1, nat<3>))>>);
     }
-
-
   } // end of namespace LiftedStringManip
-
 } // end of namespace CTString::Testing
