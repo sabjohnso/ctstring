@@ -97,7 +97,19 @@ namespace CTString::Details
 
 
 
+    template<typename Stream>
+    friend Stream&
+    operator <<(Stream& os, Lifted_string const&){
+      os << value.str();
+      return os;
+    }
 
+
+    friend ostream&
+    operator <<(ostream& os, Lifted_string const&){
+      os << value.str();
+      return os;
+    }
 
 
 

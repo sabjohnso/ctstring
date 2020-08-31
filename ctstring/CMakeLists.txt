@@ -19,6 +19,7 @@ install(TARGETS ctstring_header
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/config.hpp
   ctstring.hpp
+  macros.hpp
   DESTINATION ${ctstring_INSTALL_INCLUDEDIR}/ctstring)
 
 install(FILES

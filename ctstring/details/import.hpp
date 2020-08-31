@@ -19,6 +19,7 @@
 
 namespace CTString::Details
 {
+  using std::decay_t;
   using std::integral_constant;
   using std::extent_v;
   using std::remove_all_extents_t;

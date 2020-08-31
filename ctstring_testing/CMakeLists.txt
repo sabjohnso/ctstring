@@ -11,4 +11,6 @@ endmacro()
 ctstring_add_test(static_string static_string_test static_string_test.cpp)
 ctstring_add_test(lifted_string lifted_string_test lifted_string_test.cpp)
 target_link_libraries(lifted_string_test PRIVATE type_utility::type_utility)
+ctstring_add_test(hoist hoist_test hoist_test.cpp)
 ctstring_add_test(constants constants_test constants_test.cpp)
+
