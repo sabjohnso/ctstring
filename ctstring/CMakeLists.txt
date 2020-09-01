@@ -22,10 +22,7 @@ install(FILES
   macros.hpp
   DESTINATION ${ctstring_INSTALL_INCLUDEDIR}/ctstring)
 
-install(FILES
-  details/constants.hpp
-  details/import.hpp
-  details/Lifted_string_fwd.hpp
-  details/Lifted_string.hpp
-  details/Static_string.hpp
-  DESTINATION ${ctstring_INSTALL_INCLUDEDIR}/ctstring/details)
+install(DIRECTORY
+  details
+  DESTINATION ${ctstring_INSTALL_INCLUDEDIR}/ctstring
+  FILES_MATCHING PATTERN "*.hpp")
