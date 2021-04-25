@@ -7,6 +7,9 @@ target_include_directories(ctstring_header
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
   $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}>
   $<INSTALL_INTERFACE:${ctstring_INSTALL_INCLUDEDIR}>)
+target_link_libraries(ctstring_header
+  INTERFACE
+    type_utility::type_utility)
 
 add_library(ctstring::header ALIAS ctstring_header)
   

@@ -1,4 +1,6 @@
 if(NOT TARGET ctstring::header)
+  if(NOT TARGET type_utility::type_utility)
+    find_package(type_utility REQUIRED)
   list(INSERT CMAKE_MODULE_PATH 0 @CMAKE_INSTALL_PREFIX@/@ctstring_INSTALL_CONFDIR@)
   include(ctstring-exports)
 endif()
