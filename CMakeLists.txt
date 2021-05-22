@@ -7,7 +7,7 @@ option(ctstring_BUILD_TESTING "Build the ctstring tests" ON)
 include(GNUInstallDirs)
 set(ctstring_INSTALL_BINDIR ${CMAKE_INSTALL_BINDIR})
 set(ctstring_INSTALL_LIBDIR ${CMAKE_INSTALL_LIBDIR})
-set(ctstring_INSTALL_INCLUDEDIR ${CMAKE_INSTALL_INCLUDEDIR})
+set(ctstring_INSTALL_INCLUDEDIR ${CMAKE_INSTALL_INCLUDEDIR}/ctstring-${PROJECT_VERSION})
 set(ctstring_INSTALL_CONFDIR ${ctstring_INSTALL_LIBDIR}/cmake/ctstring-${PROJECT_VERSION})
 
 list(INSERT CMAKE_MODULE_PATH 0 ${PROJECT_SOURCE_DIR}/cmake)
