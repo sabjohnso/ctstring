@@ -30,11 +30,3 @@ install(EXPORT ctstring_EXPORTS
 configure_file(ctstring-config.cmake.in ctstring-config.cmake)
 install(FILES ${PROJECT_BINARY_DIR}/ctstring-config.cmake
   DESTINATION ${ctstring_INSTALL_CONFDIR})
-
-
-
-
-
-
-
-
