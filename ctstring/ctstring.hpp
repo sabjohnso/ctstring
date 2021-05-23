@@ -3,36 +3,34 @@
 //
 // ... CTString header files
 //
-#include <ctstring/details/Static_string.hpp>
-#include <ctstring/details/Lifted_string.hpp>
 #include <ctstring/details/Hoist.hpp>
+#include <ctstring/details/Lifted_string.hpp>
+#include <ctstring/details/Static_string.hpp>
 #include <ctstring/details/constants.hpp>
 
-namespace CTString
-{
-  using ::CTString::Details::static_string;
-  using ::CTString::Details::lifted_string;
+namespace CTString {
   using ::CTString::Details::hoist;
+  using ::CTString::Details::lifted_string;
+  using ::CTString::Details::static_string;
 
-  namespace Constants
-  {
+  namespace Constants {
 
+    using ::CTString::Details::digits;
     using ::CTString::Details::empty;
     using ::CTString::Details::layout;
-    using ::CTString::Details::digits;
     using ::CTString::Details::lower;
     using ::CTString::Details::upper;
 
-    using ::CTString::Details::zero ;
-    using ::CTString::Details::one  ;
-    using ::CTString::Details::two  ;
-    using ::CTString::Details::three;
-    using ::CTString::Details::four ;
-    using ::CTString::Details::five ;
-    using ::CTString::Details::six  ;
-    using ::CTString::Details::seven;
     using ::CTString::Details::eight;
-    using ::CTString::Details::nine ;
+    using ::CTString::Details::five;
+    using ::CTString::Details::four;
+    using ::CTString::Details::nine;
+    using ::CTString::Details::one;
+    using ::CTString::Details::seven;
+    using ::CTString::Details::six;
+    using ::CTString::Details::three;
+    using ::CTString::Details::two;
+    using ::CTString::Details::zero;
 
     using ::CTString::Details::a;
     using ::CTString::Details::b;

@@ -1,9 +1,8 @@
 #pragma once
 
-namespace CTString::Details
-{
+namespace CTString::Details {
 
-  template<typename T, T ... xs>
+  template<typename T, T... xs>
   class Lifted_string;
 
 } // end of namespace CTString::Details

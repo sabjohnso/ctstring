@@ -23,8 +23,6 @@ function check_file_format(){
     then
         echo "needs to be formatted: $inpfile"
         badfile_count+=1
-    else
-        echo "ok: $inpfile"
     fi
     rm $tmpfile
 }

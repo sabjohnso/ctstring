@@ -3,8 +3,8 @@ set -eu
 
 readonly scriptpath=$0;
 readonly scriptdir=$(dirname $0)
-readonly srcdir=$scriptdir/../list_processing
-readonly testdir=$scriptdir/../list_processing_testing
+readonly srcdir=$scriptdir/../ctstring
+readonly testdir=$scriptdir/../ctstring_testing
 
 function main(){
     format_files $srcdir
@@ -15,8 +15,13 @@ function format_file(){
     local inpfile=$1; shift
     local tmpfile=$(mktemp)
     clang-format --style=file $inpfile > $tmpfile
-    mv $tmpfile $inpfile
-    rm $tmpfile
+    if [[ $(diff -q $inpfile $tmpfile) ]]
+    then
+        echo "reformatting $inpfile"
+        mv $tmpfile $inpfile
+    fi
+
+    rm -f $tmpfile
 }
 
 function format_files(){
