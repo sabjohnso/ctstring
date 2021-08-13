@@ -22,6 +22,10 @@ namespace CTString::Details {
     static constexpr integer extent = N;
     static constexpr integer full_extent = extent + 1;
 
+    constexpr Static_string(const T xs[N])
+      : value{make_value(generate_indices<N>(), xs)}
+    {}
+
     static constexpr integer
     size()
     {
@@ -95,6 +99,14 @@ namespace CTString::Details {
   private:
     using storage = array<T, N + 1>;
     storage value;
+
+    template<size_t... Indices>
+
+    static constexpr storage
+    make_value(index_sequence<Indices...>, auto const& xs)
+    {
+      return storage{{xs[Indices]...}};
+    }
 
     template<typename T1, typename T2, typename... Ts>
     constexpr Static_string(T1 x1, T2 x2, Ts... xs)
@@ -331,8 +343,8 @@ namespace CTString::Details {
 
   }; // end of class Static_string
 
-  template<integer N>
-  Static_string(char (&)[N]) -> Static_string<char, N>;
+  template<typename T, integer N>
+  Static_string(T (&)[N]) -> Static_string<T, N>;
 
   /**
    * @brief Return a static string constructed from an input c string

@@ -5,14 +5,24 @@
 //
 #include <ctstring/details/Hoist.hpp>
 #include <ctstring/details/Lifted_string.hpp>
+#include <ctstring/details/Literal_helper.hpp>
 #include <ctstring/details/Static_string.hpp>
 #include <ctstring/details/constants.hpp>
 
 namespace CTString {
   using ::CTString::Details::hoist;
   using ::CTString::Details::lifted_string;
+  using ::CTString::Details::Literal_helper;
   using ::CTString::Details::static_string;
-  using ::CTString::Details::Static_string;
+
+  namespace Literals {
+    template<Literal_helper str>
+    constexpr auto operator""_ct()
+    {
+      return host([] { return static_string(str.value); });
+    }
+
+  } // end of namespace Literals
 
   namespace Constants {
 

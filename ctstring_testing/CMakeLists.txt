@@ -14,4 +14,4 @@ ctstring_add_test(static_string static_string_test static_string_test.cpp)
 ctstring_add_test(lifted_string lifted_string_test lifted_string_test.cpp)
 ctstring_add_test(hoist hoist_test hoist_test.cpp)
 ctstring_add_test(constants constants_test constants_test.cpp)
-
+ctstring_add_test(literals literals_test literals_test.cpp)
