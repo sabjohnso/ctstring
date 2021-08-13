@@ -12,6 +12,7 @@ namespace CTString {
   using ::CTString::Details::hoist;
   using ::CTString::Details::lifted_string;
   using ::CTString::Details::static_string;
+  using ::CTString::Details::Static_string;
 
   namespace Constants {
 
