@@ -19,9 +19,8 @@ namespace CTString {
     template<Literal_helper str>
     constexpr auto operator""_ct()
     {
-      return host([] { return static_string(str.value); });
+      return hoist([] { return static_string(str.value); });
     }
-
   } // end of namespace Literals
 
   namespace Constants {
