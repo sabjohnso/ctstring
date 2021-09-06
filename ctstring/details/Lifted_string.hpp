@@ -11,23 +11,27 @@ namespace CTString::Details {
   struct Lift_string;
 
   template<typename T, T... xs>
-  class Lifted_string {
+  class Lifted_string
+  {
     using value_type = Static_string<T, count_args(xs...)>;
-    static constexpr value_type value{ xs..., T{ 0 } };
+    static constexpr value_type value{xs..., T{0}};
 
   public:
     static constexpr auto
-    s_str() {
+    s_str()
+    {
       return value;
     }
 
     static const char*
-    c_str() {
+    c_str()
+    {
       return value.c_str();
     }
 
     static string
-    str() {
+    str()
+    {
       return value.str();
     }
 
@@ -35,94 +39,131 @@ namespace CTString::Details {
 
   private:
     template<T... ys>
-    friend constexpr Lifted_string<T, xs..., ys...>
-    operator+(Lifted_string, Lifted_string<T, ys...>) {
+    friend constexpr Lifted_string<T, xs..., ys...> operator+(
+      Lifted_string,
+      Lifted_string<T, ys...>)
+    {
       return {};
     }
 
     template<typename U>
-    friend constexpr auto
-    concat(Lifted_string, U) {
+    friend constexpr auto concat(Lifted_string, U)
+    {
       return Lifted_string{} + U{};
     }
 
     template<typename U, typename V, typename... Vs>
     friend constexpr auto
-    concat(Lifted_string, U, V, Vs...) {
+    concat(Lifted_string, U, V, Vs...)
+    {
       return concat(concat(Lifted_string{}, U{}), V{}, Vs{}...);
     }
 
     template<integer N>
-    struct TakeHelper {
-      struct Holder {
+    struct TakeHelper
+    {
+      struct Holder
+      {
         static constexpr auto value = take(Lifted_string::value, idx<N>);
       };
       using type = typename Lift_string<Holder>::type;
     };
 
     template<integer N>
-    friend constexpr typename TakeHelper<N>::type
-    take(Lifted_string, Idx<N>) {
+    friend constexpr typename TakeHelper<N>::type take(Lifted_string, Idx<N>)
+    {
       return {};
     }
 
     template<size_t N>
-    friend constexpr auto
-    take(Lifted_string, Nat<N>) {
+    friend constexpr auto take(Lifted_string, Nat<N>)
+    {
       return take(Lifted_string{}, idx<N>);
     }
 
     template<integer N>
-    struct DropHelper {
-      struct Holder {
+    struct DropHelper
+    {
+      struct Holder
+      {
         static constexpr auto value = drop(Lifted_string::value, idx<N>);
       };
       using type = typename Lift_string<Holder>::type;
     };
 
     template<integer N>
-    friend constexpr typename DropHelper<N>::type
-    drop(Lifted_string, Idx<N>) {
+    friend constexpr typename DropHelper<N>::type drop(Lifted_string, Idx<N>)
+    {
       return {};
     }
 
     template<size_t N>
-    friend constexpr auto
-    drop(Lifted_string, Nat<N>) {
+    friend constexpr auto drop(Lifted_string, Nat<N>)
+    {
       return drop(Lifted_string{}, idx<N>);
     }
 
     friend constexpr bool
-    operator==(Lifted_string const&, Lifted_string const&) {
+    operator==(Lifted_string const&, Lifted_string const&)
+    {
       return true;
     }
 
     friend constexpr bool
-    operator!=(Lifted_string const&, Lifted_string const&) {
+    operator!=(Lifted_string const&, Lifted_string const&)
+    {
       return false;
     }
 
     template<typename U, U... ys>
     friend constexpr bool
-    operator==(Lifted_string const&, Lifted_string<U, ys...> const&) {
+    operator==(Lifted_string const&, Lifted_string<U, ys...> const&)
+    {
       return false;
     }
 
     template<typename U, U... ys>
     friend constexpr bool
-    operator!=(Lifted_string const&, Lifted_string<U, ys...> const&) {
+    operator!=(Lifted_string const&, Lifted_string<U, ys...> const&)
+    {
       return true;
+    }
+
+    friend bool
+    operator==(Lifted_string const& lstr, string const& str)
+    {
+      return lstr.str() == str;
+    }
+
+    friend bool
+    operator==(string const& str, Lifted_string const& lstr)
+    {
+      return lstr == str;
+    }
+
+    friend bool
+    operator!=(Lifted_string const& lstr, string const& str)
+    {
+      return !(lstr == str);
+    }
+
+    friend bool
+    operator!=(string const& str, Lifted_string const& lstr)
+    {
+      return !(lstr == str);
     }
 
     template<typename Stream>
     friend Stream&
-    operator<<(Stream& os, Lifted_string const&) {
+    operator<<(Stream& os, Lifted_string const&)
+    {
       os << value.str();
       return os;
     }
 
     friend ostream&
-    operator<<(ostream& os, Lifted_string const&) {
+    operator<<(ostream& os, Lifted_string const&)
+    {
       os << value.str();
       return os;
     }
@@ -130,8 +171,9 @@ namespace CTString::Details {
   }; // end of class Lifted_string;
 
   template<typename T>
-  struct Lift_string {
-    using char_type                 = typename decltype(T::value)::char_type;
+  struct Lift_string
+  {
+    using char_type = typename decltype(T::value)::char_type;
     static constexpr integer extent = decltype(T::value)::extent;
 
     template<integer I, typename Values, bool dummy = false>
@@ -139,11 +181,13 @@ namespace CTString::Details {
 
     template<char_type... xs, bool dummy>
     struct Aux<extent, integer_sequence<char_type, xs...>, dummy>
-      : Type<Lifted_string<char_type, xs...>> {};
+      : Type<Lifted_string<char_type, xs...>>
+    {};
 
     template<integer I, char_type... xs, bool dummy>
     struct Aux<I, integer_sequence<char_type, xs...>, dummy>
-      : Aux<I + 1, integer_sequence<char_type, xs..., T::value[I]>, dummy> {};
+      : Aux<I + 1, integer_sequence<char_type, xs..., T::value[I]>, dummy>
+    {};
 
     using type = typename Aux<0, integer_sequence<char_type>>::type;
   };
