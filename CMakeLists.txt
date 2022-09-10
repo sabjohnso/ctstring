@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.12)
 project(ctstring VERSION 0.1.0 LANGUAGES C CXX)
 
 option(ctstring_BUILD_TESTING "Build the ctstring tests" ON)
-set(ctsstring_CXX_STANDARD 20 CACHE STRING "C++ standard for ctstring")
+set(ctstring_CXX_STANDARD 20 CACHE STRING "C++ standard for ctstring")
 
 include(GNUInstallDirs)
 set(ctstring_INSTALL_BINDIR ${CMAKE_INSTALL_BINDIR})
