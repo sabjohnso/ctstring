@@ -6,7 +6,7 @@ macro(ctstring_add_test test_name exe_name)
     ctstring::header
     GTest::gtest_main
     type_utility::type_utility)
-  set_target_properties(${exe_name} PROPERTIES CXX_STANDARD 20)
+  set_target_properties(${exe_name} PROPERTIES CXX_STANDARD ${ctstring_CXX_STANDARD})
   add_test(${test_name} ${exe_name})
 endmacro()
 
