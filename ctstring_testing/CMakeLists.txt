@@ -5,7 +5,7 @@ macro(ctstring_add_test test_name exe_name)
   target_link_libraries(${exe_name} PRIVATE
     ctstring::header
     GTest::gtest_main
-    type_utility::type_utility)
+    type_utility::header)
   set_target_properties(${exe_name} PROPERTIES CXX_STANDARD ${ctstring_CXX_STANDARD})
   add_test(${test_name} ${exe_name})
 endmacro()

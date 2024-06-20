@@ -9,10 +9,10 @@ target_include_directories(ctstring_header
   $<INSTALL_INTERFACE:${ctstring_INSTALL_INCLUDEDIR}>)
 target_link_libraries(ctstring_header
   INTERFACE
-    type_utility::type_utility)
+    type_utility::header)
 
 add_library(ctstring::header ALIAS ctstring_header)
-  
+
 install(TARGETS ctstring_header
   EXPORT ctstring_EXPORTS
   RUNTIME DESTINATION ${ctstring_INSTALL_BINDIR}
