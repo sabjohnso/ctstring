@@ -23,6 +23,7 @@ namespace CTString::Details {
   using std::remove_all_extents_t;
 
   using integer = std::ptrdiff_t;
+  using size_type = std::size_t;
 
   template<integer I>
   using Idx = integral_constant<integer, I>;
