@@ -1,5 +1,10 @@
 #pragma once
 
+//
+// ... CTString header files
+//
+#include <ctstring/details/import.hpp>
+
 namespace CTString::Details {
   template<typename Char, size_type N>
   struct Literal_helper
